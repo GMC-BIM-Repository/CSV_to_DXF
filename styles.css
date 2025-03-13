@@ -1,0 +1,139 @@
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;  /* Changed from center to flex-start */
+    gap: 20px;
+    padding: 10px 20px;  /* Added padding */
+    width: 100%;
+    position: relative;  /* Added position */
+}
+
+.logo {
+    height: 60px;  /* Increased height */
+    width: auto;
+    transition: transform 0.3s ease;
+    position: absolute;  /* Added position */
+    left: 0;  /* Position to left */
+}
+
+h1 {
+    margin: 0 auto;  /* Center the title */
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.converter-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-top: 20px;  /* Added margin-top */
+}
+
+.converter-card:hover {
+    transform: translateY(-2px);
+}
+
+.format-selector {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.format-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.format-select:focus {
+    border-color: #2196F3;
+    outline: none;
+}
+
+.file-input-container {
+    margin: 25px 0;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.file-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.convert-btn, .download-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.convert-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.convert-btn:hover {
+    background-color: #1976D2;
+    transform: translateY(-1px);
+}
+
+.download-btn {
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 20px;
+}
+
+.download-btn:hover {
+    background-color: #43A047;
+    transform: translateY(-1px);
+}
+
+.download-icon {
+    font-size: 20px;
+}
+
+.status {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 20px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.status:not(:empty) {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);  /* Subtle shadow instead of blue border */
+}

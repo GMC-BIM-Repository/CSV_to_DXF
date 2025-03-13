@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to DXF Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>CSV to DXF Converter</h1>
+        </div>
+        <div class="converter-card">
+            <div class="format-selector">
+                <label for="format-select">Select CSV Format:</label>
+                <select id="format-select" class="format-select">
+                    <option value="pnend">Point,Northing,Easting,Elevation,Description</option>
+                    <option value="pend" selected>Point,Easting,Northing,Elevation,Description</option>
+                    <option value="endzp">Easting,Northing,Description,Elevation,Point</option>
+                    <option value="endp">Easting,Northing,Description,Point</option>
+                </select>
+            </div>
+            <div class="file-input-container">
+                <input type="file" id="file-input" accept=".csv" class="file-input">
+                <button id="convert-btn" class="convert-btn">Convert to DXF</button>
+            </div>
+            <div id="status" class="status"></div>
+            <button id="download-btn" class="download-btn" style="display: none;">
+                <span class="download-icon">⭳</span>
+                Download DXF
+            </button>
+        </div>
+    </div>
+    <script src="csvParser.js"></script>
+    <script src="dxfGenerator.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
