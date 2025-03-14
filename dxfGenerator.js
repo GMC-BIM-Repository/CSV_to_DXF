@@ -1,4 +1,9 @@
+// Add console log to confirm script is loading
+console.log('dxfGenerator.js loaded');
+
 function generateDXF(points) {
+    console.log(`Generating DXF for ${points.length} points`);
+    
     let dxf = [];
     
     // Header with units set to meters
@@ -48,17 +53,29 @@ function generateDXF(points) {
     dxf.push('21\n-0.1');
     dxf.push('31\n0.0');
     
-    // Attribute definition
+    // Description attribute definition - Position ABOVE elevation (swap Y positions)
     dxf.push('0\nATTDEF');
     dxf.push('8\n0');
     dxf.push('10\n0.0');
-    dxf.push('20\n0.15');  // Adjusted text position
+    dxf.push('20\n0.3');  // Higher position (was 0.15)
     dxf.push('30\n0.0');
     dxf.push('40\n0.1');  // Text height
     dxf.push('1\nDESCRIPTION');  // Attribute prompt
     dxf.push('2\nDESC');         // Attribute tag
     dxf.push('3\n');             // Default value
     dxf.push('70\n0');           // Attribute flags
+    
+    // Elevation attribute definition - Position BELOW description
+    dxf.push('0\nATTDEF');
+    dxf.push('8\n0');
+    dxf.push('10\n0.0');
+    dxf.push('20\n0.15');  // Lower position (was 0.3)
+    dxf.push('30\n0.0');
+    dxf.push('40\n0.1');  // Text height
+    dxf.push('1\nELEVATION');  // Attribute prompt
+    dxf.push('2\nELEV');       // Attribute tag
+    dxf.push('3\n');           // Default value
+    dxf.push('70\n0');         // Attribute flags
     
     dxf.push('0\nENDBLK');
     dxf.push('0\nENDSEC');
@@ -97,15 +114,26 @@ function generateDXF(points) {
         dxf.push('43\n1.0');  // Z scale
         dxf.push('50\n0.0');  // Rotation
         
-        // Add attribute
+        // Add description attribute - Position ABOVE elevation
         dxf.push('0\nATTRIB');
         dxf.push('8\n0');
         dxf.push('10\n' + point.easting);
-        dxf.push('20\n' + (point.northing + 0.2));
+        dxf.push('20\n' + (point.northing + 0.35));  // Higher position (was 0.2)
         dxf.push('30\n' + point.elevation);
         dxf.push('40\n0.1');  // Text height
         dxf.push('1\n' + (point.description ? point.description.trim() : ''));  // Attribute value
         dxf.push('2\nDESC');  // Attribute tag
+        dxf.push('70\n0');    // Attribute flags
+        
+        // Add elevation attribute - Position BELOW description
+        dxf.push('0\nATTRIB');
+        dxf.push('8\n0');
+        dxf.push('10\n' + point.easting);
+        dxf.push('20\n' + (point.northing + 0.2));  // Lower position (was 0.35)
+        dxf.push('30\n' + point.elevation);
+        dxf.push('40\n0.1');  // Text height
+        dxf.push('1\nElev: ' + point.elevation.toFixed(3));  // Elevation value with prefix
+        dxf.push('2\nELEV');  // Attribute tag
         dxf.push('70\n0');    // Attribute flags
         
         dxf.push('0\nSEQEND');
@@ -114,5 +142,6 @@ function generateDXF(points) {
     dxf.push('0\nENDSEC');
     dxf.push('0\nEOF');
     
+    console.log('DXF generation complete');
     return dxf.join('\n');
 }

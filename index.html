@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="logo.png" alt="Logo" class="logo">
+            <img src="logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
             <h1>CSV to DXF Converter</h1>
         </div>
         <div class="converter-card">
@@ -33,6 +33,14 @@
             </button>
         </div>
     </div>
+    <!-- Add console logging for debugging -->
+    <script>
+        console.log('HTML loaded');
+        window.addEventListener('error', function(e) {
+            console.error('Script error:', e.message);
+            document.getElementById('status').textContent = 'Error: ' + e.message;
+        });
+    </script>
     <script src="csvParser.js"></script>
     <script src="dxfGenerator.js"></script>
     <script src="app.js"></script>
